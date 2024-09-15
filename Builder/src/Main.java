@@ -1,11 +1,11 @@
 import Mail.Attachment;
 import Mail.Email;
-import Mail.EmailBuilder;
+import Mail.EmailBuilderBuilder;
 
 
 public class Main {
     public static void main(String[] args) {
-        Email email = new EmailBuilder()
+        Email email = new EmailBuilderBuilder()
                 .addRecipient("juan@gmail.com")
                 .addRecipient("recipient2@example.com")
                 .setSubject("Reunión Importante")
@@ -25,7 +25,7 @@ public class Main {
         email.getReplyTo().ifPresent(reply ->
                 System.out.println("Reply-To: " + reply));
 
-        Email email1 = new EmailBuilder()
+        Email email1 = new EmailBuilderBuilder()
                 .addRecipient("juan@gmail.com")
                 .addRecipient("kevin@example.com")
                 .setSubject("Reunión Importante Iglesia")

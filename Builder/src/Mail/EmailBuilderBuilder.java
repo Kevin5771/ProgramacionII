@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-public class EmailBuilder implements IntEmail{
+public class EmailBuilderBuilder implements IEmailBuilder {
     private static final Pattern EMAIL_PATTERN =
             Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$");
 
@@ -20,7 +20,7 @@ public class EmailBuilder implements IntEmail{
         return EMAIL_PATTERN.matcher(email).matches();
     }
     @Override
-    public EmailBuilder addRecipient(String destinatario) {
+    public EmailBuilderBuilder addRecipient(String destinatario) {
         if (!isValidEmail(destinatario)) {
             throw new IllegalArgumentException("Email inválido: " + destinatario);
         }
@@ -30,7 +30,7 @@ public class EmailBuilder implements IntEmail{
     }
 
     @Override
-    public EmailBuilder setSubject(String sujeto) {
+    public EmailBuilderBuilder setSubject(String sujeto) {
         if (sujeto== null || sujeto.isEmpty()) {
             throw new IllegalStateException("El asunto no puede estar vacío");
         }
@@ -40,7 +40,7 @@ public class EmailBuilder implements IntEmail{
 
 
     @Override
-    public EmailBuilder setBody(String cuerpo) {
+    public EmailBuilderBuilder setBody(String cuerpo) {
         if (cuerpo== null || cuerpo.isEmpty()) {
             throw new IllegalStateException("El cuerpo no puede estar vacio");
         }
@@ -49,14 +49,14 @@ public class EmailBuilder implements IntEmail{
     }
 
     @Override
-    public EmailBuilder addAttachment(Attachment attachment) {
+    public EmailBuilderBuilder addAttachment(Attachment attachment) {
         this.attachments.add(attachment);
         return this;
     }
 
 
     @Override
-    public EmailBuilder setReplyTo(String replyTo) {
+    public EmailBuilderBuilder setReplyTo(String replyTo) {
         if (!isValidEmail(replyTo)) {
             throw new IllegalArgumentException("Email inválido para Reply-To: " + replyTo);
         }

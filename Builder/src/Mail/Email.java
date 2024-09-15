@@ -3,7 +3,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-public class Email {
+public class Email{
     private final List<String> destinatarios;
     private final String sujeto;
     private final String cuerpo;
